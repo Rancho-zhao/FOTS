@@ -1,0 +1,40 @@
+prefix: ""
+random_seed: 0
+save_csv: False
+visualize:
+  normals: True
+  points3d: True
+
+dataloader:
+  batch_size: 1
+  shuffle: False
+  num_workers: 8
+  annot_flag: True
+  annot_file: "/home/r404/mujoco_pybinding/FOTS/mlp_calib/csv/annotate.csv"
+dataset:
+  dataset_type: 'imgs'
+  save_dataset: True
+sensor:
+  mesh_name: adigit.STL
+  serial_num: "D20368"
+  T_cam_offset: [ [ 2.22e-16, 2.22e-16, -1.00e+00, 0.00e+00 ],
+                    [ -1.00e+00, 0.00e+00, -2.22e-16, 0.00e+00 ],
+                    [ 0.00e+00, 1.00e+00, 2.22e-16, 1.50e-02 ],
+                    [ 0.00e+00, 0.00e+00, 0.00e+00, 1.00e+00 ] ]
+
+  P: [ [ 2.30940108e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00 ],
+         [ 0.00000000e+00, 1.73205081e+00, 0.00000000e+00, 0.00000000e+00 ],
+         [ 0.00000000e+00, 0.00000000e+00, -1.04081633e+00, -2.04081633e-03 ],
+         [ 0.00000000e+00, 0.00000000e+00, -1.00000000e+00, 0.00000000e+00 ] ]
+
+  z_near: 0.001
+  z_far: 0.05
+
+  gel_width: 0.02  # "D00001" 0.01835  # gel width (y-axis) in meters //original: 0.02
+  gel_height: 0.03   # "D00001"0.02490 # gel height (x-axis) in meters //original: 0.03
+
+base_path: "/home/r404/mujoco_pybinding/FOTS/mlp_calib/"
+model_path: "/home/r404/mujoco_pybinding/FOTS/mlp_calib/models/mlp.ckpt"
+base_img_path: "/home/r404/mujoco_pybinding/FOTS/mlp_calib/0000.png"
+mm_to_pixel: 19.58 # 21.09
+
