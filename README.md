@@ -1,1 +1,40 @@
-# FOTS
+# FOTS: A Fast Optical Tactile Simulator for Sim2Real Learning of Tactile-guided Robot Manipulation Skills
+FOTS is suitable for GelSight tactile sensors and its variations (like DIGIT sensors). 
+
+In addition, FOTS does not rely on any simulation platform, you can integrate it to any platform (like MUJOCO).
+
+## Installation
+
+To install dependencies: `pip install -r mlp_calib/requirements.txt`
+
+## Optical Calibration (optional)
+1. MLP Calib: Connect a GelSight/DIGIT sensor, and collect ~50 tactile images of a sphere indenter on different locations.
+2. Shadow Calib: Choose ~5 tactile images from last step.
+
+*Note: Specific steps refers to respective readme file.*
+
+## Marker Calibration (optional)
+1. Collect ~45 tactile flow images of a sphere indenter on different locations (in order of dilate, shear, and twist, 15 images for each type).
+
+*Note: Specific steps refers to respective readme file.*
+
+## Usage Directly
+We provide a set of calibration files and you can work with them directly. 
+
+- `python fots_test.py`: you can obtain simulated tactile image, mask, and tactile flow image.
+
+
+
+## License
+FOTS is licensed under [MIT license](LICENSE).
+
+## Citating Taxim
+If you use FOTS in your research, please cite:
+```BibTeX
+@article{zhao2023fots,
+  title={FOTS: A Fast Optical Tactile Simulator for Sim2Real Learning of Tactile-guided Robot Manipulation Skills},
+  author={Zhao, Yongqiang and Qian, Kun and Duan, Boyi and Luo, Shan},
+  journal={},
+  year={2023}
+}
+```
