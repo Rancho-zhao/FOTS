@@ -6,5 +6,7 @@ mm_to_pixel = 19.58
 sensor_h = 320
 sensor_w = 240
 
-pyramid_kernel_size = [201,101,51,21,11,5] 
+sensor_type = 'gelsight' # gelsight
+
+pyramid_kernel_size = [51, 21, 11, 5]#[11, 11, 11, 11, 11, 5] 
 kernel_size = 5
