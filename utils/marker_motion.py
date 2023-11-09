@@ -12,10 +12,10 @@ class MarkerMotion():
                 mask,
                 traj,
                 lamb,
-                N=9,
-                M=8,
-                W=320,
-                H=240,
+                N=pr.N,
+                M=pr.M,
+                W=pr.sensor_w,
+                H=pr.sensor_h,
                 is_flow=True):
 
         # self.model = model
@@ -27,8 +27,6 @@ class MarkerMotion():
 
         self.N = N
         self.M = M
-        self.padding = 7
-        self.interval = 7
         self.W = W
         self.H = H
         self.is_flow = is_flow
@@ -38,24 +36,17 @@ class MarkerMotion():
         self.moving = False
         self.rotation = False
 
-        self.K = 5
         self.mkr_rng = 0.5
 
         self.x = np.arange(0, self.W, 1)
         self.y = np.arange(0, self.H, 1)
-        self.xx, self.yy = np.meshgrid(self.y, self.x)
+        self.xx, self.yy = np.meshgrid(self.x, self.y)
 
     def _shear(self, center_x, center_y, lamb, shear_x, shear_y, xx, yy):
         # TODO: add force and torque effect
         g = np.exp(-(((xx - center_x) ** 2 + (yy - center_y) ** 2)) * lamb)
 
         dx, dy = shear_x * g, shear_y * g
-
-        # thres = 0.7 * self.interval
-        # mag = (dx ** 2 + dy ** 2) ** 0.5
-        # mask = mag > thres
-        # dx[mask] = dx[mask] / mag[mask] * thres
-        # dy[mask] = dy[mask] / mag[mask] * thres
 
         xx_ = xx + dx
         yy_ = yy + dy
@@ -88,7 +79,7 @@ class MarkerMotion():
         return xx_, yy_
 
     def _generate(self,xx,yy):
-        img = self.frame0_blur.copy()#np.zeros_like(
+        img = np.zeros_like(self.frame0_blur.copy())#
 
         for i in range(self.N):
             for j in range(self.M):
@@ -96,16 +87,13 @@ class MarkerMotion():
                 ini_c = int(self.xx[j,i])
                 r = int(yy[j, i])
                 c = int(xx[j, i])
-                if r >= self.W or r < 0 or c >= self.H or c < 0:
+                if r >= self.H or r < 0 or c >= self.W or c < 0:
                     continue
                 # shape = img[r - 1 : r + 2, c - 1 : c + 2, :].shape
                 cv2.circle(img,(c,r), 3, (20,20,20),4)
 
-                img[r - 4 : r + 4, c - 4 : c + 4, :] = (
-                    self.frame0_blur[r - 4 : r + 4, c - 4 : c + 4, :] * self.mkr_rng
-                )
                 img[r, c, :] = self.frame0_blur[r, c, :] * 0
-                k = 2
+                k = 3
                 if self.is_flow:
                     pt1 = (ini_c, ini_r)
                     pt2 = (c+k*(c-ini_c), r+k*(r-ini_r))
@@ -113,7 +101,7 @@ class MarkerMotion():
                     cv2.arrowedLine(img, pt1, pt2, color, 2,  tipLength=0.2)
 
 
-        img = img[:self.W, :self.H]
+        # img = img[:self.W, :self.H]
         return img
 
     def _motion_callback(self,xx,yy):
@@ -151,14 +139,10 @@ class MarkerMotion():
 
     def _marker_motion(self):
         xind = (np.random.random(self.N * self.M) * self.W).astype(np.int16)
-        yind = (np.random.random(self.N * self.M) * self.H).astype(np.int32)
+        yind = (np.random.random(self.N * self.M) * self.H).astype(np.int16)
 
-        # T = 4
-        interval_x = self.W / (self.N + 1)
-        interval_y = self.H / (self.M + 1)
-
-        x = np.arange(40, 280, 27)[:self.N]
-        y = np.arange(27, 240, 27)[:self.M]
+        x = np.arange(pr.x0, 320, pr.dx)[:self.N]
+        y = np.arange(pr.y0, 240, pr.dy)[:self.M]
         
         xind, yind = np.meshgrid(x, y)
         xind = (xind.reshape([1, -1])[0]).astype(np.int16)
@@ -166,7 +150,7 @@ class MarkerMotion():
 
         xx_marker, yy_marker = self.xx[xind, yind].reshape([self.M, self.N]), self.yy[xind, yind].reshape([self.M, self.N])
         self.xx,self.yy = xx_marker, yy_marker
-        # print(self.xx)
+
         img = self._generate(xx_marker, yy_marker)
         # if self.contact:
         xx_marker_, yy_marker_ = self._motion_callback(xx_marker, yy_marker)
