@@ -19,31 +19,18 @@ def click_and_store(event, x, y, flags, param):
     if event == cv2.EVENT_RBUTTONDOWN:
         points.append([0, 0])
 
-# 定义一个函数，接受一个nx2的数组a作为参数
 def split_array(a):
-  # 初始化一个空列表，用于存储分割后的数组
   result = []
-  # 初始化一个空数组，用于存储当前的子数组
   current = []
-  # 遍历a中的每一行
   for row in a:
-    # 如果当前行是[0,0]，则表示遇到了分割点
     if (row == [0,0]).all():
-      # 如果当前子数组不为空，说明已经有一段连续的非[0,0]的元素
       if len(current) > 0:
-        # 把当前子数组添加到结果列表中
         result.append(current)
-        # 清空当前子数组，准备下一次分割
         current = []
-    # 如果当前行不是[0,0]，则表示是有效的元素
     else:
-      # 把当前行添加到当前子数组中
       current.append(row)
-  # 如果最后一次遍历后，当前子数组不为空，说明还有一段连续的非[0,0]的元素没有被分割
   if len(current) > 0:
-    # 把当前子数组添加到结果列表中
     result.append(current)
-  # 返回结果列表
   return result
 
 # define model functions
