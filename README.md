@@ -1,4 +1,6 @@
-# FOTS: A Fast Optical Tactile Simulator for Sim2Real Learning of Tactile-guided Robot Manipulation Skills
+# FOTS: A Fast Optical Tactile Simulator for Sim2Real Learning of Tactile-motor Robot Manipulation Skills
+This work has been accepted by IEEE Robotics and Automation Letters (RA-L).
+
 FOTS is suitable for GelSight tactile sensors and its variations (like DIGIT sensors). 
 
 In addition, FOTS does not rely on any simulation platform, you can integrate it to any platform (like MUJOCO).
@@ -28,13 +30,13 @@ We provide a set of calibration files and you can work with them directly.
 ## License
 FOTS is licensed under [MIT license](LICENSE).
 
-## Citating Taxim
+## Citating FOTS
 If you use FOTS in your research, please cite:
 ```BibTeX
-@article{zhao2023fots,
-  title={FOTS: A Fast Optical Tactile Simulator for Sim2Real Learning of Tactile-guided Robot Manipulation Skills},
+@article{zhao2024fots,
+  title={FOTS: A Fast Optical Tactile Simulator for Sim2Real Learning of Tactile-motor Robot Manipulation Skills},
   author={Zhao, Yongqiang and Qian, Kun and Duan, Boyi and Luo, Shan},
-  journal={},
-  year={2023}
+  journal={IEEE Robotics and Automation Letters},
+  year={2024}
 }
 ```
