@@ -127,8 +127,8 @@ class MarkerMotion():
                                 yy_)
 
             theta = max(min(self.traj[-1][2]-self.traj[0][2], 50 / 180.0 * math.pi), -50 / 180.0 * math.pi)
-            xx_,yy_ = self._twist(int(self.traj[-1][0]*mm2pix + 120), 
-                                int(self.traj[-1][1]*mm2pix + 160),
+            xx_,yy_ = self._twist(int(self.traj[0][0]*mm2pix + 120), 
+                                int(self.traj[0][1]*mm2pix + 160),
                                 self.lamb[2],
                                 theta,
                                 xx_,
