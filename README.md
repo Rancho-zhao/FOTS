@@ -7,7 +7,7 @@ In addition, FOTS does not rely on any simulation platform, you can integrate it
 
 ## Installation
 
-To install dependencies: `pip install -r mlp_calib/requirements.txt`
+To install dependencies: `pip install -r requirements.txt`
 
 ## Optical Calibration (optional)
 1. MLP Calib: Connect a GelSight/DIGIT sensor, and collect ~50 tactile images of a sphere indenter on different locations.
