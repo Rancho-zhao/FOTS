@@ -3,7 +3,7 @@ This work has been accepted by IEEE Robotics and Automation Letters (RA-L).
 
 FOTS is suitable for GelSight tactile sensors and its variations (like DIGIT sensors). 
 
-In addition, FOTS does not rely on any simulation platform, you can integrate it to any platform (like MUJOCO).
+In addition, FOTS does not rely on any simulation platform, you can integrate it to any platform (like [MuJoCo](https://github.com/google-deepmind/mujoco)).
 
 ## Installation
 
