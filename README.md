@@ -36,7 +36,7 @@ If you use FOTS in your research, please cite:
 @article{zhao2024fots,
   title={FOTS: A Fast Optical Tactile Simulator for Sim2Real Learning of Tactile-motor Robot Manipulation Skills},
   author={Zhao, Yongqiang and Qian, Kun and Duan, Boyi and Luo, Shan},
-  journal={IEEE Robotics and Automation Letters},
+  journal={arXiv preprint arXiv:2404.19217},
   year={2024}
 }
 ```
