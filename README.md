@@ -30,13 +30,14 @@ We provide a set of calibration files and you can work with them directly.
 ## License
 FOTS is licensed under [MIT license](LICENSE).
 
-## Citating FOTS
+## Citing FOTS
 If you use FOTS in your research, please cite:
 ```BibTeX
 @article{zhao2024fots,
   title={FOTS: A Fast Optical Tactile Simulator for Sim2Real Learning of Tactile-motor Robot Manipulation Skills},
   author={Zhao, Yongqiang and Qian, Kun and Duan, Boyi and Luo, Shan},
-  journal={arXiv preprint arXiv:2404.19217},
+  journal={IEEE Robotics and Automation Letters},
   year={2024}
 }
 ```
+[ArXiv Paper Link](https://arxiv.org/abs/2404.19217)
