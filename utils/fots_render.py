@@ -58,7 +58,6 @@ class FOTSRender:
 
     def __init__(self, **config):
         self.background = config['background_img']
-        self.bg_depth = config['bg_depth']
         self.bg_render = config['bg_render']
         self.model = config['model']
 
