@@ -15,8 +15,6 @@ def get_simapproach():
     background_img  = np.load(model_path)
 
     # FOTS render params
-    # bg_ini_depth = np.load('./utils/utils_data/ini_depth_curve.npy')
-    bg_ini_depth = np.load('./utils/utils_data/ini_depth_extent_gelsight.npy')
     ini_bg_mlp = np.load('./utils/utils_data/ini_bg_fots_gelsight.npy')
     # load mlp model
     model = MLP().to(device)
@@ -25,7 +23,6 @@ def get_simapproach():
 
     simulation = FOTSRender(
         background_img      = background_img,
-        bg_depth            = bg_ini_depth,
         bg_render           = ini_bg_mlp,
         model               = model,
     )
