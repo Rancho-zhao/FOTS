@@ -1,0 +1,31 @@
+<mujoco>
+    <asset>
+        <!--DIGIT models-->
+        <mesh name="digit_back"     file="digit_back.STL"           scale="0.001 0.001 0.001"/>
+        <mesh name="digit_glass"    file="digit_glass.STL"          scale="0.001 0.001 0.003"/>
+        <mesh name="digit_gel"    file="digit_glass.STL"          scale="0.001 0.001 0.0009"/>
+        <mesh name="digit_curve"    file="digit_curve_0_5.STL"  scale=".001 .001 .001"/>
+        <!-- Daniel models-->
+        <mesh name="daniel" file="daniel/cylinder.stl" scale=".0009 .0009 .0009"/>
+
+        <material name="black_resin" rgba="0.1 0.1 0.1 1"/>
+        <material name="white_resin" rgba="0.9 0.9 0.9 1"/>
+        <material name="gray_elastomer" rgba="0.8 0.8 0.8 1"/>
+        <material name="transparent_glass" rgba="0.9 0.95 1 0.7"/>
+
+
+        <material name="silver" specular="1" shininess="0.5" reflectance="1" emission="0.25" rgba=".82 .82 .82 1"/>
+        <material name="grey" specular="1" shininess="0.5" reflectance="1" emission="0.1" rgba="0.5 0.5 0.5 1"/>
+        <material name="blue" specular="1" shininess="0.5" reflectance="1" emission="0" rgba="0.678 0.847 0.902 1"/>
+        <material name="black" specular="1" shininess="0.5" reflectance="1" emission="0" rgba="0.2 0.2 0.2 1"/>
+        <material name="floor_mat" specular="0" shininess="0.5" reflectance="0" rgba="0.2 0.2 0.2 1"></material>
+        <material name="table_mat" specular="0" shininess="0.5" reflectance="0" rgba="0.93 0.93 0.93 1"></material>
+        <material name="block_mat" specular="0" shininess="0.5" reflectance="0" rgba="0.2 0.2 0.2 1"></material>
+        <material name="puck_mat" specular="0" shininess="0.5" reflectance="0" rgba="0.2 0.2 0.2 1"></material>
+    </asset>
+
+    <equality>
+        <weld body1="mocap" body2="object1" solimp="0.9 0.95 0.001" solref="0.02 1" torquescale="0.01"></weld>
+    </equality>
+
+</mujoco>

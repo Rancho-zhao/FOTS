@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mujoco>
+	<compiler angle="radian"  coordinate="local" meshdir="../stls/gel" ></compiler>
+	<option timestep="0.002">
+		<flag warmstart="enable" multiccd="enable"></flag>
+	</option>
+    <!-- <option timestep="2e-3"
+            iterations="100"
+            tolerance="1e-10"
+            impratio="10"/> -->
+    <default>
+        <light castshadow="false" diffuse="1 1 1" />
+        <camera fovy="60" />
+        <motor ctrllimited="true" ctrlrange="-0.04 0.04"/>
+        <!-- <joint range="-1.5708 1.5708"/> -->
+    </default>
+
+    <visual>
+        <rgba connect="1 0.2 1 1" joint="0.2 0.6 0.8 1"/>
+        <map fogstart="3" fogend="5"/>
+        <quality shadowsize="2048"/>
+    </visual>
+    <option gravity="0 0 0" iterations="100"/>
+
+    <custom>
+        <numeric name="N_GRIPPER_JOINTS" data="0" />
+    </custom>
+
+    <size nconmax="2000" njmax="10000" nstack="500000"/>
+
+	<include file="shared.xml"></include>
+	
+	<worldbody>
+
+		<geom name="floor0" pos="0 0 0" size="0.85 0.7 1" type="plane" contype="32" conaffinity="32" condim="3" material="floor_mat"></geom>
+		<body name="floor0" pos="0 0 0">
+			<site name="target0" pos="0 0 0.5" size="0.02 0.02 0.02" rgba="1 0 0 0.0" type="sphere"></site>
+		</body>
+
+        <include file="digit_sensor.xml"></include>
+
+        <body mocap="true" name="mocap" pos="0 0 0.1">
+            <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.0" size="0.002 0.002 0.002" type="box"></geom>
+            <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.0" size=".1 0.002 0.002" type="box"></geom>
+            <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.0" size="0.002 .1 0.002" type="box"></geom>
+            <geom conaffinity="0" contype="0" pos="0 0 0" rgba="0 0.5 0 0.0" size="0.002 0.002 .1" type="box"></geom>
+        </body>
+
+		<body name="object1" pos="0.0 0.0 0.1">
+            <site name="object1:site" pos="0 0 0" rgba="0 1 0 .1" size="0.02 0.02 0.02"/>
+            <joint name="object:joint" type="free" damping=".002" limited="true"></joint>
+            <geom name="object1" type="mesh" mesh="daniel" euler="3.14 0 0" pos="0 0 0" contype="1" conaffinity="32" condim="3" material="blue"></geom>
+        </body>	
+
+
+        <light directional="true" ambient="0.2 0.2 0.2" diffuse="0.8 0.8 0.8" specular="0.3 0.3 0.3" castshadow="false" pos="0 0 4" dir="0 0 -1" name="light0"></light>
+	</worldbody>
+    <!-- Camera settings -->
+    <visual>
+        <!-- allows the camera to fit into smaller spaces without clipping through -->
+        <map znear="0.001" zfar="1000"/>
+    </visual>
+    <statistic extent="1" />
+
+</mujoco>
